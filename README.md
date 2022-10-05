@@ -19,7 +19,7 @@ Add the package to your `mix.exs`:
 ```elixir
 def deps do
   [
-    {:type_counselor, "~> 0.1.0"}
+    {:type_counselor, "~> 0.1.0", only: :test}
   ]
 end
 ```

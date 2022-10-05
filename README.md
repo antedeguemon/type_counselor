@@ -71,8 +71,8 @@ iex> suggestions = TypeCounselor.fetch(:user)
 iex> File.write!("user.exs", suggestions)
 ```
 
-The content of the created `user.exs` will contain type suggestions for `user`
-according to `user_info` content values during test runtime:
+`user.exs` will have type suggestions for `user` according to `user_info`
+content values during test runtime:
 
 ```elixir
 %{

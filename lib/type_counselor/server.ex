@@ -7,8 +7,8 @@ defmodule TypeCounselor.Server do
     GenServer.start_link(__MODULE__, default, name: __MODULE__)
   end
 
-  def derive(name) do
-    GenServer.call(__MODULE__, {:derive, name})
+  def fetch(name) do
+    GenServer.call(__MODULE__, {:fetch, name})
   end
 
   def add(name, struct) do
@@ -24,7 +24,7 @@ defmodule TypeCounselor.Server do
   end
 
   @impl true
-  def handle_call({:derive, name}, _from, state) do
+  def handle_call({:fetch, name}, _from, state) do
     suggestion =
       state
       |> Enum.filter(fn {key, _value} -> key == name end)

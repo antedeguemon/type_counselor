@@ -4,7 +4,9 @@ An experimental library for suggesting type specifications based on Elixir maps
 and structures.
 
 ```elixir
-iex> TypeCounselor.suggest([%{identifier: "IBM5100"}, %{identifier: 5100}])
+iex> map_1 = %{identifier: "IBM5100"}
+iex> map_2 = %{identifier: 5100}
+iex> TypeCounselor.suggest([map_1, map_2])
 "%{identifier => String.t() | :non_neg_integer}"
 ```
 

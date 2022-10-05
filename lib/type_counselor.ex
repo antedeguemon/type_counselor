@@ -1,18 +1,8 @@
 defmodule TypeCounselor do
-  @moduledoc """
-  Documentation for `TypeCounselor`.
-  """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> TypeCounselor.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def suggest(structs) do
+    structs
+    |> TypeCounselor.Types.suggest_types()
+    |> TypeCounselor.Builder.unify()
+    |> TypeCounselor.Output.to_specs()
   end
 end

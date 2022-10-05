@@ -1,6 +1,7 @@
 # TypeCounselor
 
-**TODO: Add description**
+An experimental library for suggesting type specifications based on Elixir maps
+and structures.
 
 ## Installation
 

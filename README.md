@@ -26,23 +26,43 @@ end
 
 ### 2. Instrument the codebase
 
-Manually instrument places where structs are created to call `TypeCounselor.add/2`.
+Manually add `TypeCounselor.add/2` calls to places in the code where structs are
+built.
 
-Example:
+E.g.:
 
 ```elixir
 def populate_users(user_ids) do
-  Enum.map(user_ids, fn user_id -> 
+  Enum.map(user_ids, fn user_id ->
     case SpotifyClient.fetch_user(user_id) do
       {:ok, user_info} ->
-        # Note the `TypeCounselor.add/2` call below
+        %User{
+          name: user_info[:username],
+          profile: user_info[:profile_url],
+          flags: user_info[:flags]
+        }
+
+      {:error, _} = result ->
+        result
+    end
+  end)
+end
+```
+
+When instrumented, it becomes:
+
+```elixir
+def populate_users(user_ids) do
+  Enum.map(user_ids, fn user_id ->
+    case SpotifyClient.fetch_user(user_id) do
+      {:ok, user_info} ->
         TypeCounselor.add(:user, %User{
           name: user_info[:username],
           profile: user_info[:profile_url],
           flags: user_info[:flags]
         })
 
-      {:error, _} = result -> 
+      {:error, _} = result ->
         result
     end
   end)

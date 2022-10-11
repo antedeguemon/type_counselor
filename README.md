@@ -3,6 +3,8 @@
 An experimental library for suggesting type specifications based on Elixir maps
 and structures.
 
+Useful for finding outdated types in codebases.
+
 ```elixir
 iex> map_1 = %{identifier: "IBM5100"}
 %{identifier: "IBM5100"}
